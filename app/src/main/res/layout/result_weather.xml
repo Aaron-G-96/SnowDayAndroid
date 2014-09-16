@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.GBSnowDay.SnowDay.ResultWeather">
+
+    <WebView
+        android:layout_width="800dp"
+        android:layout_height="765dp"
+        android:id="@+id/webRadar"
+        android:visibility="gone" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/radarshow"
+        android:id="@+id/btnRadar"
+        android:onClick="radarToggle"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/txtWeather" />
+
+</RelativeLayout>

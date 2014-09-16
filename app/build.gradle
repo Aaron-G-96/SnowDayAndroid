@@ -9,8 +9,13 @@ android {
     buildToolsVersion '20.0.0'
     defaultConfig {
         applicationId 'com.GBSnowDay.SnowDay'
+<<<<<<< Updated upstream
         minSdkVersion 7
         targetSdkVersion 20
+=======
+        minSdkVersion 11
+        targetSdkVersion 21
+>>>>>>> Stashed changes
         versionCode 1
         versionName '1.0'
     }

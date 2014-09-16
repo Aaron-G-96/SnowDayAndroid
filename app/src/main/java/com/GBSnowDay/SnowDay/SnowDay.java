@@ -1,5 +1,6 @@
 package com.GBSnowDay.SnowDay;
 
+<<<<<<< Updated upstream
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,16 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+=======
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+>>>>>>> Stashed changes
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,7 +27,7 @@ import java.text.Format;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SnowDay extends Activity {
+public class SnowDay extends FragmentActivity {
 
     public String orgName;
     public String status;
@@ -82,13 +93,79 @@ public class SnowDay extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+<<<<<<< Updated upstream
 
+=======
+        System.out.println("We're live!");
+        System.out.println("Creating snow_day");
+>>>>>>> Stashed changes
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_snow_day);
+        setContentView(R.layout.fragment_snow_day);
 
         //Make sure the user doesn't try to run the program on the weekend or during school hours
         checkWeekend();
         checkTime();
+<<<<<<< Updated upstream
+=======
+        //Listen for optToday or optTomorrow changes
+        optToday.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            System.out.println("optToday checked");
+            if (lstDays.getSelectedItemId() != 0) {
+                btnCalculate.setEnabled(true);
+                //btnCalculate.setBackgroundColor(Color.rgb(52, 181, 229));
+            }
+            }
+        });
+        optTomorrow.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                System.out.println("optTomorrow checked");
+                if (lstDays.getSelectedItemId() != 0) {
+                    btnCalculate.setEnabled(true);
+                    //btnCalculate.setBackgroundColor(Color.rgb(52, 181, 229));
+                }
+            }
+        });
+
+        //Listen for lstDays changes
+        lstDays.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                if (lstDays.getSelectedItemId() == 0) {
+                    btnCalculate.setEnabled(false);
+                    //btnCalculate.setBackgroundColor(Color.rgb(2, 154, 204));
+                }else if (!optToday.isChecked() && !optTomorrow.isChecked()) {
+                    btnCalculate.setEnabled(false);
+                    //btnCalculate.setBackgroundColor(Color.rgb(2, 154, 204));
+                }else{
+                    btnCalculate.setEnabled(true);
+                    //btnCalculate.setBackgroundColor(Color.rgb(52, 181, 229));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        //Listen for button click
+        btnCalculate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                System.out.println("btnCalculate clicked");
+                btnCalculate.setEnabled(false);
+                //btnCalculate.setBackgroundColor(Color.rgb(2, 154, 204));
+                Calculate();
+                //Switch to SnowDayResult activity
+                //Pass value of 'days' to new activity
+
+                Intent result = new Intent(getApplicationContext(), SnowDayResult.class);
+                result.putExtra("dayrun", dayrun);
+                result.putExtra("days", days);
+                System.out.println("Switching to snow_day_result");
+                startActivity(result);
+            }
+        });
+>>>>>>> Stashed changes
     }
 
 

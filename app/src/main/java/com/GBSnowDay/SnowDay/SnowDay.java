@@ -1,40 +1,34 @@
 package com.GBSnowDay.SnowDay;
 
-<<<<<<< Updated upstream
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-=======
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
->>>>>>> Stashed changes
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class SnowDay extends FragmentActivity {
 
-    public String orgName;
-    public String status;
-    public String hazardName;
-    public String schooltext;
-    public String weathertext;
-    public String weathercheck;
+    //Declare all views
+    RadioButton optToday;
+    RadioButton optTomorrow;
+    TextView txtInfo;
+    Spinner lstDays;
+    Button btnCalculate;
+
+
+
+    //Declare variables
     public String today;
     public String tomorrow;
     public Date date;
@@ -44,77 +38,41 @@ public class SnowDay extends FragmentActivity {
     public String[] statusLine;
 
     public int days;
-    public int schoolpercent = 0;
-    public int weatherpercent = 0;
-    public int percent;
-    public int dayrun = 0;
-    public int tier1 = 0;
-    public int tier2 = 0;
-    public int tier3 = 0;
-    public int tier4 = 0;
-    public int tier5 = 0;
-
-    public boolean schoolNull;
-    public boolean GBAcademy;
-    public boolean HolyFamily;
-    public boolean WPAcademy;
-    public boolean GISD;
-    public boolean Durand; //Check for "Durand Senior Center"
-    public boolean Holly;  //Check for "Holly Academy"
-    public boolean Lapeer; //Check for "Chatfield School-Lapeer", "Greater Lapeer Transit Authority", "Lapeer CMH Day Programs",
-    //"Lapeer Co. Ed-Tech Center", "Lapeer County Ofices", "Lapeer District Library", "Lapeer Senior Center", and "St. Paul Lutheran-Lapeer"
-    public boolean Owosso; //Check for "Owosso Senior Center", "Baker College-Owosso", and "St. Paul Catholic-Owosso"
-    public boolean Beecher;
-    public boolean Clio; //Check for "Clio Area Senior Center", "Clio City Hall", and "Cornerstone Clio"
-    public boolean Davison; //Check for "Davison Senior Center", "Faith Baptist School-Davison", and "Montessori Academy-Davison"
-    public boolean Fenton; //Check for "Lake Fenton", "Fenton City Hall", and "Fenton Montessori Academy"
-    public boolean Flushing; //Check for "Flushing Senior Citizens Center" and "St. Robert-Flushing"
-    public boolean Genesee; //Check for "Freedom Work-Genesee Co.", "Genesee Christian-Burton", "Genesee Co. Mobile Meals", "Genesee Hlth Sys Day Programs", "Genesee Stem Academy", and "Genesee I.S.D."
-    public boolean Kearsley;
-    public boolean LKFenton;
-    public boolean Linden; //Check for "Linden Charter Academy"
-    public boolean Montrose; //Check for "Montrose Senior Center"
-    public boolean Morris;  //Check for "Mt Morris Twp Administration" and "St. Mary's-Mt. Morris"
-    public boolean SzCreek; //Check for "Swartz Creek Area Senior Ctr." and "Swartz Creek Montessori"
-    public boolean Atherton;
-    public boolean Bendle;
-    public boolean Bentley;
-    public boolean Flint; //Thankfully this is listed as "Flint Community Schools" - otherwise there would be 25 exceptions to check for.
-    public boolean Goodrich;
-    public boolean Carman; //Check for "Carman-Ainsworth Senior Ctr."
-    public boolean GB; //Check for "Freedom Work-Grand Blanc", "Grand Blanc Academy", "Grand Blanc City Offices", "Grand Blanc Senior Center", and "Holy Family-Grand Blanc"
+    public int dayrun;
 
     //Figure out what tomorrow is
     //Saturday = 0, Sunday = 1
+
     Calendar calendar = Calendar.getInstance();
     int weekday = calendar.get(Calendar.DAY_OF_WEEK);
     int month = calendar.get(Calendar.MONTH);
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-<<<<<<< Updated upstream
-
-=======
         System.out.println("We're live!");
-        System.out.println("Creating snow_day");
->>>>>>> Stashed changes
+        System.out.println("Creating activity_snow_day");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_snow_day);
 
+        //Declare views
+        optToday = (RadioButton) findViewById(R.id.optToday);
+        optTomorrow = (RadioButton) findViewById(R.id.optTomorrow);
+        txtInfo = (TextView) findViewById(R.id.txtInfo);
+        lstDays = (Spinner) findViewById(R.id.lstDays);
+        btnCalculate = (Button) findViewById(R.id.btnCalculate);
+
+
         //Make sure the user doesn't try to run the program on the weekend or during school hours
-        checkWeekend();
+        //checkWeekend();
         checkTime();
-<<<<<<< Updated upstream
-=======
         //Listen for optToday or optTomorrow changes
         optToday.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            System.out.println("optToday checked");
-            if (lstDays.getSelectedItemId() != 0) {
-                btnCalculate.setEnabled(true);
-                //btnCalculate.setBackgroundColor(Color.rgb(52, 181, 229));
-            }
+                System.out.println("optToday checked");
+                if (lstDays.getSelectedItemId() != 0) {
+                    btnCalculate.setEnabled(true);
+                    //btnCalculate.setBackgroundColor(Color.rgb(52, 181, 229));
+                }
             }
         });
         optTomorrow.setOnClickListener(new View.OnClickListener() {
@@ -161,18 +119,17 @@ public class SnowDay extends FragmentActivity {
                 Intent result = new Intent(getApplicationContext(), SnowDayResult.class);
                 result.putExtra("dayrun", dayrun);
                 result.putExtra("days", days);
-                System.out.println("Switching to snow_day_result");
+                System.out.println("Switching to activity_snow_day_result");
                 startActivity(result);
             }
         });
->>>>>>> Stashed changes
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.snow_day, menu);
+        System.out.println("onCreateOptionsMenu doesn't do anything yet");
         return true;
     }
 
@@ -183,6 +140,7 @@ public class SnowDay extends FragmentActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        System.out.println("onOptionsItemSelected doesn't do anything yet");
         if (id == R.id.action_settings) {
             return true;
         }
@@ -190,58 +148,106 @@ public class SnowDay extends FragmentActivity {
     }
 
 
+    public void Calculate() {
+        /**
+         * This method will predict the possibility of a snow day for Grand Blanc Community Schools.
+         * Created by Corey Rowe, July 2014 - port of original Swing GUI.
+         * Factors:
+         * Predicted snowfall and time of arrival (not yet implemented)
+         * Predicted ice accumulation (not yet implemented)
+         * Predicted wind chill (below -20F?) (not yet implemented)
+         * Number of snow days accrued (more = smaller chance) (not yet implemented)
+         * Schools currently closed (data from WJRT) (not yet implemented)
+         * Schools in higher tiers (5 is highest) will increase the snow day chance.
+         * Obviously return 100% if GB is already closed.
+         */
+        System.out.println("Calculation has started");
+        //Call a reset to clear any previous data
+        Reset();
 
-    public void calculate(View view) {
-        Intent i = new Intent(getApplicationContext(), SnowDayResult.class);
-        startActivity(i);
+        //Date setup
+        System.out.println("Checking selected day");
+        if (optToday.isChecked()) {
+            dayrun = 0;
+            System.out.println("dayrun set to 0 (Today)");
+        } else if (optTomorrow.isChecked()) {
+            System.out.println("dayrun set to 1 (Tomorrow)");
+            dayrun = 1;
+        }
 
+        System.out.println("Determining date");
+        date = calendar.getTime();
+        formatter = new SimpleDateFormat("MMM dd yyyy");
+        today = formatter.format(date);
+        calendar.add(Calendar.DATE, 1);
+        date = calendar.getTime();
+        formatter = new SimpleDateFormat("MMM dd yyyy");
+        tomorrow = formatter.format(date);
+
+        //Set calculation to today or tomorrow
+        if (dayrun == 0) {
+            txtInfo.setText(txtInfo.getText() + "\n" + this.getString(R.string.DayRun) + " " + this.getString(R.string.today));
+            System.out.println("Today is " + today);
+        } else if (dayrun == 1) {
+            txtInfo.setText(txtInfo.getText() + "\n" + this.getString(R.string.DayRun) + " " + this.getString(R.string.tomorrow));
+            System.out.println("Tomorrow is " + tomorrow);
+        }
+
+        //Have the user input past snow days
+        days = lstDays.getSelectedItemPosition() - 1;
+        System.out.println("User says " + days + " snow days have occurred.");
+    }
+
+    private void Reset() {
+        System.out.println("Resetting SnowDay variables");
+        //Reset variables
+        today = "";
+        tomorrow = "";
+        txtInfo.setText("");
     }
 
     private void checkWeekend() {
-
-        TextView txtInfo = (TextView) findViewById(R.id.txtInfo);
-        RadioButton optToday = (RadioButton) findViewById(R.id.optToday);
-        RadioButton optTomorrow = (RadioButton) findViewById(R.id.optTomorrow);
-        Spinner lstDays = (Spinner) findViewById(R.id.lstDays);
-
+        System.out.println("Checking the Weekend...");
         //Friday is 6
         //Saturday is 7
         //Sunday is 1
 
         if (weekday == 6) {
-            txtInfo.setText(this.getString(R.string.SaturdayTomorrow));
+            System.out.println("Today is Friday (6).");
+            txtInfo.setText(R.string.SaturdayTomorrow);
             optTomorrow.setEnabled(false);
             optToday.setChecked(true);
-        }else if (weekday == 7) {
-            txtInfo.setText(this.getString(R.string.SaturdayToday));
+        } else if (weekday == 7) {
+            System.out.println("Today is Saturday (7).");
+            txtInfo.setText(R.string.SaturdayToday);
             optToday.setEnabled(false);
             optTomorrow.setEnabled(false);
             lstDays.setEnabled(false);
-        }else if (weekday == 1) {
-            txtInfo.setText(this.getString(R.string.SundayToday));
+        } else if (weekday == 1) {
+            System.out.println("Today is Sunday (1).");
+            txtInfo.setText(R.string.SundayToday);
             optToday.setEnabled(false);
             optTomorrow.setChecked(true);
         }
     }
 
     private void checkTime() {
-
-        RadioButton optToday = (RadioButton) findViewById(R.id.optToday);
-        TextView txtInfo = (TextView) findViewById(R.id.txtInfo);
-
-        if (calendar.get(Calendar.HOUR_OF_DAY) >= 7 && calendar.get(Calendar.HOUR_OF_DAY)<14 && weekday!=7 && weekday!=1) {
+        System.out.println("Checking the time...");
+        if (calendar.get(Calendar.HOUR_OF_DAY) >= 7 && calendar.get(Calendar.HOUR_OF_DAY) < 16 && weekday != 7 && weekday != 1) {
+            System.out.println("Time is between 7AM and 4PM.");
+            System.out.println("The school's already open.");
             optToday.setEnabled(false);
             //txtGB.setText("Grand Blanc: OPEN");
             txtInfo.setText(txtInfo.getText() + this.getString(R.string.SchoolOpen));
             dayrun = 1;
-        }else if (calendar.get(Calendar.HOUR_OF_DAY) >=14 && weekday!=7 && weekday!=1) {
-            optToday.setEnabled(false);
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 16 && weekday != 7 && weekday != 1) {
             //txtGB.setText("Grand Blanc: Dismissed");
-            //txtGB.setBackground(Color.YELLOW);
+            //txtGB.setBackgroundColor(Color.YELLOW);
+            optToday.setEnabled(false);
+            System.out.println("Time is after 4PM");
+            System.out.println("School's already out for today!");
             txtInfo.setText(txtInfo.getText() + this.getString(R.string.GBDismissed));
             dayrun = 1;
         }
     }
-
-
 }

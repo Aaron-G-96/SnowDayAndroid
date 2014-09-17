@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">SnowDay</string>
+    <string name="title_activity_snow_day_result">Snow Day Calculator</string>
+    <string name="title_activity_snow_day">Snow Day Calculator</string>
     <string name="btn_start">Start</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
@@ -10,6 +12,7 @@
     <string name="prev">How many snow days have occurred?</string>
     <string name="next">Next</string>
     <string name="calculate">Calculate!</string>
+    <string name="percent">Percent</string>
     <string name="list">Select a Number</string>
     <string name="quit">Quit</string>
     <string name="tier1">Academies / Institutions</string>
@@ -34,6 +37,7 @@
     <string name="LKFenton">Lake Fenton:</string>
     <string name="Linden">Linden:</string>
     <string name="Montrose">Montrose:</string>
+    <string name="Morris">Mount Morris:</string>
     <string name="SzCreek">Swartz Creek:</string>
     <string name="Atherton">Atherton:</string>
     <string name="Bendle">Bendle:</string>
@@ -44,6 +48,8 @@
     <string name="GB">Grand Blanc:</string>
     <string name="DayRun">Running calculation for </string>
     <string name="NoClosings">Doesn\'t look like *any* schools are closed.</string>
+    <string name="WJRTClosings">WJRT School Closings</string>
+    <string name="Closings">Closings</string>
     <string name="WJRTError">Unable to parse WJRT listings.</string>
     <string name="ErrorContact">If this error persists please contact the developer.</string>
     <string name="NoWeather">"No applicable weather warnings."</string>
@@ -63,6 +69,9 @@
     <string name="GBClosedTomorrow">Grand Blanc is Closed Tomorrow!</string>
     <string name="SnowDay">Enjoy your Snow Day!</string>
     <string name="NWS">National Weather Service</string>
+    <string name="Weather">Weather</string>
+    <string name="radarshow">Show Radar</string>
+    <string name="radarhide">Hide Radar</string>
     <string name="InEffect">in effect</string>
     <string name="HazardWeather">Hazardous Weather Outlook</string>
     <string name="SigWeather">Significant Weather Advisory</string>
@@ -79,11 +88,9 @@
     <string name="IceStorm">Ice Storm Warning</string>
     <string name="WindChillWarn">Wind Chill Warning</string>
     <string name="BlizzardWarn">Blizzard Warning</string>
-    <string name="title_activity_snow_day">GBCS Snow Day Calculator</string>
     <string name="weather_image">NWS Radar Mosaic</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_snow_day_result">GBCS Snow Day Calculator</string>
+
     <string-array name="days_array">
         <item>Select</item>
         <item>0</item>
@@ -98,7 +105,33 @@
         <item>9</item>
         <item>10 or more</item>
     </string-array>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="closings_array">
+        <item>@string/GB</item>
+        <item>@string/Carman</item>
+        <item>@string/Atherton</item>
+        <item>@string/Bendle</item>
+        <item>@string/Flint</item>
+        <item>@string/Goodrich</item>
+        <item>@string/Beecher</item>
+        <item>@string/Clio</item>
+        <item>@string/Davison</item>
+        <item>@string/Fenton</item>
+        <item>@string/Flushing</item>
+        <item>@string/Genesee</item>
+        <item>@string/Kearsley</item>
+        <item>@string/LKFenton</item>
+        <item>@string/Linden</item>
+        <item>@string/Montrose</item>
+        <item>@string/Morris</item>
+        <item>@string/SzCreek</item>
+        <item>@string/Durand</item>
+        <item>@string/Holly</item>
+        <item>@string/Lapeer</item>
+        <item>@string/Owosso</item>
+        <item>@string/GBAcademy</item>
+        <item>@string/GISD</item>
+        <item>@string/HolyFamily</item>
+        <item>@string/WPAcademy</item>
+    </string-array>
 
 </resources>

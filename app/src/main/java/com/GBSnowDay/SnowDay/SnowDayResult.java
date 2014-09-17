@@ -1,32 +1,15 @@
 package com.GBSnowDay.SnowDay;
 
-<<<<<<< Updated upstream
-import android.app.Activity;
-=======
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
->>>>>>> Stashed changes
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
-<<<<<<< Updated upstream
-
-public class SnowDayResult extends Activity{
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_snow_day_result);
-        WebView webRadar = (WebView) findViewById(R.id.webRadar);
-        webRadar.loadUrl("http://radar.weather.gov/Conus/Loop/centgrtlakes_loop.gif");
-        webRadar.getSettings().setLoadWithOverviewMode(true);
-        webRadar.getSettings().setUseWideViewPort(true);
-
-    }
-=======
 import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -73,7 +56,6 @@ public class SnowDayResult extends FragmentActivity {
     TextView txtTier2;
     TextView txtTier3;
     TextView txtTier4;
-    TextView txtTier5;
 
     TextView txtInfo;
     TextView txtPercent;
@@ -81,8 +63,6 @@ public class SnowDayResult extends FragmentActivity {
 
     WebView webRadar;
     Button btnRadar;
-
-    TabHost tabHost;
 
     //Variable declaration
     public String orgName;
@@ -146,8 +126,21 @@ public class SnowDayResult extends FragmentActivity {
         System.out.println("Hello from snow_day_result!");
         System.out.println("Setting up views");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.snow_day_result);
+
         //Declare views
+
+        setContentView(R.layout.result_weather);
+
+        txtWeather = (TextView) findViewById(R.id.txtWeather);
+        webRadar = (WebView) findViewById(R.id.webRadar);
+        btnRadar = (Button) findViewById(R.id.btnRadar);
+
+        setContentView(R.layout.result_percent);
+
+        txtPercent = (TextView) findViewById(R.id.txtPercent);
+        txtInfo = (TextView) findViewById(R.id.txtInfo);
+
+        setContentView(R.layout.result_closings);
         txtGB = (TextView) findViewById(R.id.txtGB);
         txtCarman = (TextView) findViewById(R.id.txtCarman);
         txtAtherton = (TextView) findViewById(R.id.txtAtherton);
@@ -180,17 +173,9 @@ public class SnowDayResult extends FragmentActivity {
         txtTier3 = (TextView) findViewById(R.id.txtTier3);
         txtTier4 = (TextView) findViewById(R.id.txtTier4);
 
-        txtWeather = (TextView) findViewById(R.id.txtWeather);
-        webRadar = (WebView) findViewById(R.id.webRadar);
-        btnRadar = (Button) findViewById(R.id.btnRadar);
-
-        txtPercent = (TextView) findViewById(R.id.txtPercent);
-        txtInfo = (TextView) findViewById(R.id.txtInfo);
-
         Calculate();
 
         }
->>>>>>> Stashed changes
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -211,8 +196,6 @@ public class SnowDayResult extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-<<<<<<< Updated upstream
-=======
     public void radarToggle(View view) {
         if (webRadar.getVisibility() == View.GONE) {
             webRadar.setEnabled(true);
@@ -1533,5 +1516,4 @@ public class SnowDayResult extends FragmentActivity {
         txtWeather.setVisibility(View.VISIBLE);
         btnRadar.setVisibility(View.VISIBLE);
     }
->>>>>>> Stashed changes
 }

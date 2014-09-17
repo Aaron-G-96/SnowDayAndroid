@@ -5,6 +5,9 @@
     <!-- Allows applications to open network sockets. -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--Access to protected storage -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"

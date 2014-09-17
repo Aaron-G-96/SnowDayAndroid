@@ -10,7 +10,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/txtPercent"
         android:layout_centerVertical="true"
-        android:visibility="visible"
+        android:visibility="gone"
         android:textColor="@android:color/white"
         android:textSize="72sp"
         android:layout_alignParentRight="true"

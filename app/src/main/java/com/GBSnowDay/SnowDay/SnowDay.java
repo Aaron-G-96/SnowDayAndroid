@@ -1,13 +1,26 @@
 package com.GBSnowDay.SnowDay;
 
+<<<<<<< HEAD
 import android.support.v4.app.FragmentActivity;
+=======
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+>>>>>>> master
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+<<<<<<< HEAD
+=======
+import android.widget.ProgressBar;
+>>>>>>> master
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+<<<<<<< HEAD
 public class SnowDay extends FragmentActivity {
 
     //Declare all views
@@ -46,8 +60,13 @@ public class SnowDay extends FragmentActivity {
     Calendar calendar = Calendar.getInstance();
     int weekday = calendar.get(Calendar.DAY_OF_WEEK);
     int month = calendar.get(Calendar.MONTH);
+=======
+public class SnowDay extends Activity implements SnowDayFragment.OnFragmentInteractionListener {
+
+>>>>>>> master
 
     @Override
+<<<<<<< HEAD
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("We're live!");
         System.out.println("Creating activity_snow_day");
@@ -123,6 +142,23 @@ public class SnowDay extends FragmentActivity {
                 startActivity(result);
             }
         });
+=======
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("We're live!");
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_snow_day);
+        SnowDayFragment snowday = new SnowDayFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, snowday);
+        fragmentTransaction.commit();
+        System.out.println("Attaching SnowDayFragment...");
+>>>>>>> master
     }
 
     @Override
@@ -193,6 +229,7 @@ public class SnowDay extends FragmentActivity {
             System.out.println("Tomorrow is " + tomorrow);
         }
 
+<<<<<<< HEAD
         //Have the user input past snow days
         days = lstDays.getSelectedItemPosition() - 1;
         System.out.println("User says " + days + " snow days have occurred.");
@@ -251,3 +288,19 @@ public class SnowDay extends FragmentActivity {
         }
     }
 }
+=======
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+>>>>>>> master

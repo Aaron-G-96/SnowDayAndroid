@@ -1,8 +1,15 @@
 package com.GBSnowDay.SnowDay;
 
+<<<<<<< HEAD
 
 import android.content.Intent;
 import android.graphics.Color;
+=======
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
+>>>>>>> master
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -64,6 +72,67 @@ public class SnowDayResult extends FragmentActivity {
     WebView webRadar;
     Button btnRadar;
 
+=======
+import android.widget.ProgressBar;
+import android.widget.TabHost;
+import android.widget.TextView;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.File;
+import java.io.IOException;
+
+
+public class SnowDayResult extends Activity implements Closings.OnFragmentInteractionListener, Percent.OnFragmentInteractionListener, Weather.OnFragmentInteractionListener{
+
+    //Declare all views
+    TextView txtGB;
+    TextView txtCarman;
+    TextView txtAtherton;
+    TextView txtBendle;
+    TextView txtBentley;
+    TextView txtFlint;
+    TextView txtGoodrich;
+    TextView txtBeecher;
+    TextView txtClio;
+    TextView txtDavison;
+    TextView txtFenton;
+    TextView txtFlushing;
+    TextView txtGenesee;
+    TextView txtKearsley;
+    TextView txtLKFenton;
+    TextView txtLinden;
+    TextView txtMontrose;
+    TextView txtMorris;
+    TextView txtSzCreek;
+    TextView txtDurand;
+    TextView txtHolly;
+    TextView txtLapeer;
+    TextView txtOwosso;
+    TextView txtGBAcademy;
+    TextView txtGISD;
+    TextView txtHolyFamily;
+    TextView txtWPAcademy;
+
+    TextView txtTier1;
+    TextView txtTier2;
+    TextView txtTier3;
+    TextView txtTier4;
+
+    TextView txtInfo;
+    TextView txtPercent;
+    TextView txtWeather;
+
+    WebView webRadar;
+    Button btnRadar;
+    ProgressBar progCalculate;
+
+    TabHost tabHost;
+
+>>>>>>> master
     //Variable declaration
     public String orgName;
     public String status;
@@ -120,6 +189,7 @@ public class SnowDayResult extends FragmentActivity {
 
     public boolean WJRTActive;
     public boolean NWSActive;
+<<<<<<< HEAD
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +244,67 @@ public class SnowDayResult extends FragmentActivity {
         txtTier4 = (TextView) findViewById(R.id.txtTier4);
 
         Calculate();
+=======
+
+
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+            System.out.println("Hello from activity_snow_day_result!");
+            System.out.println("Setting up views");
+            super.onCreate(savedInstanceState);
+
+            Percent percentfragment = new Percent();
+            Closings closingsfragment = new Closings();
+            Weather weatherfragment = new Weather();
+            setContentView(R.layout.activity_snow_day_result);
+
+            //Create TabHost
+            tabHost = (TabHost) findViewById(R.id.tabHost);
+            tabHost.setup();
+
+            TabHost.TabSpec specs = tabHost.newTabSpec("tag1");
+            specs.setContent(R.id.tab1);
+            specs.setIndicator("Percent");
+            tabHost.addTab(specs);
+
+            specs = tabHost.newTabSpec("tag2");
+            specs.setContent(R.id.tab2);
+            specs.setIndicator("Closings");
+            tabHost.addTab(specs);
+
+            specs = tabHost.newTabSpec("tag3");
+            specs.setContent(R.id.tab3);
+            specs.setIndicator("Weather");
+            tabHost.addTab(specs);
+
+            tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+                @Override
+                public void onTabChanged(String s) {
+                    if (tabHost.getCurrentTab() == 0) {
+                        System.out.println("One");
+                    }else if (tabHost.getCurrentTab() == 1) {
+                        System.out.println("Two");
+                    }else if (tabHost.getCurrentTab() == 2) {
+                        System.out.println("Three");
+                    }
+                }
+            });
+
+
+
+            txtPercent = (TextView) findViewById(R.id.txtPercent);
+            txtWeather = (TextView) findViewById(R.id.txtWeather);
+            txtInfo = (TextView) findViewById(R.id.txtInfo);
+            webRadar = (WebView) findViewById(R.id.webRadar);
+            btnRadar = (Button) findViewById(R.id.btnRadar);
+            progCalculate = (ProgressBar) findViewById(R.id.progCalculate);
+        
+            Calculate();
+>>>>>>> master
 
         }
 
@@ -196,6 +327,7 @@ public class SnowDayResult extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+<<<<<<< HEAD
     public void radarToggle(View view) {
         if (webRadar.getVisibility() == View.GONE) {
             webRadar.setEnabled(true);
@@ -212,6 +344,9 @@ public class SnowDayResult extends FragmentActivity {
             txtWeather.setVisibility(View.VISIBLE);
         }
     }
+=======
+
+>>>>>>> master
 
     private void Calculate() {
         System.out.println("Continuing calculation");
@@ -237,19 +372,34 @@ public class SnowDayResult extends FragmentActivity {
          */
 
         //Call a reset to clear any previous data
+<<<<<<< HEAD
         Reset();
 
 
         /**WJRT SCHOOL CLOSINGS SCRAPER**/
         new WJRTScraper().execute();
+=======
+        //Reset();
+
+
+        /**WJRT SCHOOL CLOSINGS SCRAPER**/
+        //new WJRTScraper().execute();
+>>>>>>> master
 
         //Next Test: Weather!
 
         /**NATIONAL WEATHER SERVICE SCRAPER**/
+<<<<<<< HEAD
         new WeatherScraper().execute();
 
         //Final Percent Calculator
         new PercentCalculate().execute();
+=======
+        //new WeatherScraper().execute();
+
+        //Final Percent Calculator
+        //new PercentCalculate().execute();
+>>>>>>> master
 
 
 
@@ -261,7 +411,12 @@ public class SnowDayResult extends FragmentActivity {
         WJRTActive = false;
         NWSActive = false;
 
+<<<<<<< HEAD
         txtInfo.setVisibility(View.GONE);
+=======
+        //txtInfo.setVisibility(View.GONE);
+        //progCalculate.setVisibility(View.VISIBLE);
+>>>>>>> master
 
         //Reset variables
         schoolpercent = 0;
@@ -306,6 +461,7 @@ public class SnowDayResult extends FragmentActivity {
 
         txtPercent.setText("");
         txtGBAcademy.setText((R.string.GBAcademy));
+<<<<<<< HEAD
         txtGBAcademy.setBackgroundColor(Color.BLACK);
         txtGBAcademy.setVisibility(View.GONE);
         txtGISD.setText(R.string.GISD);
@@ -382,6 +538,114 @@ public class SnowDayResult extends FragmentActivity {
         txtCarman.setVisibility(View.GONE);
         txtGB.setText(R.string.GB);
         txtGB.setBackgroundColor(Color.BLACK);
+=======
+        txtGBAcademy.setTextColor(Color.WHITE);
+        txtGBAcademy.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtGBAcademy.setVisibility(View.GONE);
+        txtGISD.setText(R.string.GISD);
+        txtGISD.setTextColor(Color.WHITE);
+        txtGISD.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtGISD.setVisibility(View.GONE);
+        txtHolyFamily.setText(R.string.HolyFamily);
+        txtHolyFamily.setTextColor(Color.WHITE);
+        txtHolyFamily.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtHolyFamily.setVisibility(View.GONE);
+        txtWPAcademy.setText(R.string.WPAcademy);
+        txtWPAcademy.setTextColor(Color.WHITE);
+        txtWPAcademy.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtWPAcademy.setVisibility(View.GONE);
+        txtBeecher.setText(R.string.Beecher);
+        txtBeecher.setTextColor(Color.WHITE);
+        txtBeecher.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtBeecher.setVisibility(View.GONE);
+        txtClio.setText(R.string.Clio);
+        txtClio.setTextColor(Color.WHITE);
+        txtClio.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtClio.setVisibility(View.GONE);
+        txtDavison.setText(R.string.Davison);
+        txtDavison.setTextColor(Color.WHITE);
+        txtDavison.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtDavison.setVisibility(View.GONE);
+        txtFenton.setText(R.string.Fenton);
+        txtFenton.setTextColor(Color.WHITE);
+        txtFenton.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtFenton.setVisibility(View.GONE);
+        txtFlushing.setText(R.string.Flushing);
+        txtFlushing.setTextColor(Color.WHITE);
+        txtFlushing.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtFlushing.setVisibility(View.GONE);
+        txtGenesee.setText(R.string.Genesee);
+        txtGenesee.setTextColor(Color.WHITE);
+        txtGenesee.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtGenesee.setVisibility(View.GONE);
+        txtKearsley.setText(R.string.Kearsley);
+        txtKearsley.setTextColor(Color.WHITE);
+        txtKearsley.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtKearsley.setVisibility(View.GONE);
+        txtLKFenton.setText(R.string.LKFenton);
+        txtLKFenton.setTextColor(Color.WHITE);
+        txtLKFenton.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtLKFenton.setVisibility(View.GONE);
+        txtLinden.setText(R.string.Linden);
+        txtLinden.setTextColor(Color.WHITE);
+        txtLinden.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtLinden.setVisibility(View.GONE);
+        txtMontrose.setText(R.string.Montrose);
+        txtMontrose.setTextColor(Color.WHITE);
+        txtMontrose.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtMontrose.setVisibility(View.GONE);
+        txtMorris.setText(R.string.Morris);
+        txtMorris.setTextColor(Color.WHITE);
+        txtMorris.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtMorris.setVisibility(View.GONE);
+        txtSzCreek.setText(R.string.SzCreek);
+        txtSzCreek.setTextColor(Color.WHITE);
+        txtSzCreek.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtSzCreek.setVisibility(View.GONE);
+        txtAtherton.setText(R.string.Atherton);
+        txtAtherton.setTextColor(Color.WHITE);
+        txtAtherton.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtAtherton.setVisibility(View.GONE);
+        txtBendle.setText(R.string.Bendle);
+        txtBendle.setTextColor(Color.WHITE);
+        txtBendle.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtBendle.setVisibility(View.GONE);
+        txtBentley.setText(R.string.Bentley);
+        txtBentley.setTextColor(Color.WHITE);
+        txtBentley.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtBentley.setVisibility(View.GONE);
+        txtFlint.setText(R.string.Flint);
+        txtFlint.setTextColor(Color.WHITE);
+        txtFlint.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtFlint.setVisibility(View.GONE);
+        txtGoodrich.setText(R.string.Goodrich);
+        txtGoodrich.setTextColor(Color.WHITE);
+        txtGoodrich.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtGoodrich.setVisibility(View.GONE);
+        txtDurand.setText(R.string.Durand);
+        txtDurand.setTextColor(Color.WHITE);
+        txtDurand.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtDurand.setVisibility(View.GONE);
+        txtHolly.setText(R.string.Holly);
+        txtHolly.setTextColor(Color.WHITE);
+        txtHolly.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtHolly.setVisibility(View.GONE);
+        txtLapeer.setText(R.string.Lapeer);
+        txtLapeer.setTextColor(Color.WHITE);
+        txtLapeer.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtLapeer.setVisibility(View.GONE);
+        txtOwosso.setText(R.string.Owosso);
+        txtOwosso.setTextColor(Color.WHITE);
+        txtOwosso.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtOwosso.setVisibility(View.GONE);
+        txtCarman.setText(R.string.Carman);
+        txtCarman.setTextColor(Color.WHITE);
+        txtCarman.setBackgroundColor(Color.rgb(55, 60, 65));
+        txtCarman.setVisibility(View.GONE);
+        txtGB.setText(R.string.GB);
+        txtGB.setTextColor(Color.WHITE);
+        txtGB.setBackgroundColor(Color.rgb(55, 60, 65));
+>>>>>>> master
         txtGB.setVisibility(View.GONE);
 
         txtTier1.setVisibility(View.GONE);
@@ -405,8 +669,13 @@ public class SnowDayResult extends FragmentActivity {
             /**WJRT SCHOOL CLOSINGS SCRAPER**/
             //Scrape School Closings from WJRT with Jsoup.
             //The following is a rigged archive from January 5th - every school referenced by this program was closed the following day.
+<<<<<<< HEAD
             System.out.println("Reading from Closings.htm on emulated SD card");
             try {
+=======
+//            System.out.println("Reading from Closings.htm on emulated SD card");
+           /* try {
+>>>>>>> master
                 File input = new File("mnt/sdcard/Closings.htm");
                 schools = Jsoup.parse(input, "UTF-8", "");
                 System.out.println("Read successful");
@@ -415,6 +684,7 @@ public class SnowDayResult extends FragmentActivity {
                 txtInfo.setText(txtInfo.getText() + getString(R.string.NoConnection));
                 e.printStackTrace();
                 System.out.println("Couldn't read the file.");
+<<<<<<< HEAD
             }
 
             //This is a second rigged archive from December 23rd - Swartz Creek and Kearsley were closed on the day for reference.
@@ -427,6 +697,20 @@ public class SnowDayResult extends FragmentActivity {
                 txtInfo.setText(txtInfo.getText() + getString(R.string.NoConnection));
                 e.printStackTrace();
             }*/
+=======
+            }*/
+
+            //This is a second rigged archive from December 23rd - Swartz Creek and Kearsley were closed on the day for reference.
+
+//            try {
+//                File input = new File("mnt/sdcard/ClosingsToday.htm");
+//                schools = Jsoup.parse(input, "UTF-8", "");
+//            }catch (IOException e) {
+//                TextView txtInfo = (TextView) findViewById(R.id.txtInfo);
+//                txtInfo.setText(txtInfo.getText() + getString(R.string.NoConnection));
+//                e.printStackTrace();
+//            }
+>>>>>>> master
 
             //This third document tests for false triggers, e.g. "Owosso" shouldn't show as "closed" if only "Owosso Senior Center" is closed.
             //This document will not trigger any closings if the code is working properly.
@@ -463,17 +747,32 @@ public class SnowDayResult extends FragmentActivity {
 
             //This is the current listings page.
 
+<<<<<<< HEAD
             /*try {
+=======
+            try {
+>>>>>>> master
                 schools = Jsoup.connect("http://ftpcontent2.worldnow.com/wjrt/school/closings.htm").get();
             } catch (IOException e) {
                 System.out.println(R.string.NoConnection);
             }
+<<<<<<< HEAD
 */
             System.out.println("Attempting to parse input file");
             for (Element row : schools.select("td[bgcolor]")) {
                 System.out.println("the for loop is working");
                 orgName = orgName + "\n" + (row.select("font.orgname").first().text());
                 status = status + "\n" + (row.select("font.status").first().text());
+=======
+
+            System.out.println("Attempting to parse input file");
+            int loopnum = 1; //for debugging purposes only
+            for (Element row : schools.select("td[bgcolor]")) {
+                System.out.println("Reading closings (" + (loopnum) + ")");
+                orgName = orgName + "\n" + (row.select("font.orgname").first().text());
+                status = status + "\n" + (row.select("font.status").first().text());
+                loopnum++;
+>>>>>>> master
             }
             System.out.println("Loop exited.");
 
@@ -546,6 +845,10 @@ public class SnowDayResult extends FragmentActivity {
                             txtGBAcademy.setText("Grand Blanc Academy: CLOSED");
                             //lstClosings.
                             txtGBAcademy.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtGBAcademy.setTextColor(Color.WHITE);
+>>>>>>> master
                             System.out.println("Closures Detected Correctly");
                             tier1++;
                             GBAcademy = true;
@@ -557,6 +860,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Genesee I.S.D.") && statusLine[i].contains("Closed Today")) {
                             txtGISD.setText("Genesee I.S.D.: CLOSED");
                             txtGISD.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtGISD.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier1++;
                             GISD = true;
                         } else {
@@ -567,6 +874,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Holy Family") && statusLine[i].contains("Closed Today")) {
                             txtHolyFamily.setText("Holy Family: CLOSED");
                             txtHolyFamily.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtHolyFamily.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier1++;
                             HolyFamily = true;
                         } else {
@@ -577,6 +888,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Woodland Park Academy") && statusLine[i].contains("Closed Today")) {
                             txtWPAcademy.setText("Woodland Park Academy: CLOSED");
                             txtWPAcademy.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtWPAcademy.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier1++;
                             WPAcademy = true;
                         } else {
@@ -587,6 +902,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Durand") && !orgNameLine[i].contains("Senior") && statusLine[i].contains("Closed Today")) {
                             txtDurand.setText("Durand: CLOSED");
                             txtDurand.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtDurand.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Durand = true;
                         } else {
@@ -597,6 +916,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Holly") && !orgNameLine[i].contains("Academy") && statusLine[i].contains("Closed Today")) {
                             txtHolly.setText("Holly: CLOSED");
                             txtHolly.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtHolly.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Holly = true;
                         } else {
@@ -607,6 +930,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Lapeer") && !orgNameLine[i].contains("Chatfield") && !orgNameLine[i].contains("Transit") && !orgNameLine[i].contains("CMH") && !orgNameLine[i].contains("Tech") && !orgNameLine[i].contains("Offices") && !orgNameLine[i].contains("Library") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Paul") && statusLine[i].contains("Closed Today")) {
                             txtLapeer.setText("Lapeer: CLOSED");
                             txtLapeer.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtLapeer.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Lapeer = true;
                         } else {
@@ -617,6 +944,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Owosso") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Baker") && !orgNameLine[i].contains("Paul") && statusLine[i].contains("Closed Today")) {
                             txtOwosso.setText("Owosso: CLOSED");
                             txtOwosso.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtOwosso.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Owosso = true;
                         } else {
@@ -627,6 +958,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Beecher") && statusLine[i].contains("Closed Today")) {
                             txtBeecher.setText("Beecher: CLOSED");
                             txtBeecher.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtBeecher.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Beecher = true;
                         } else {
@@ -637,6 +972,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Clio") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("City") && !orgNameLine[i].contains("Cornerstone") && statusLine[i].contains("Closed Today")) {
                             txtClio.setText("Clio: CLOSED");
                             txtClio.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtClio.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Clio = true;
                         } else {
@@ -647,6 +986,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Davison") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Faith") && !orgNameLine[i].contains("Montessori") && statusLine[i].contains("Closed Today")) {
                             txtDavison.setText("Davison: CLOSED");
                             txtDavison.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtDavison.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Davison = true;
                         } else {
@@ -657,6 +1000,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Fenton") && !orgNameLine[i].contains("Lake") && !orgNameLine[i].contains("City") && !orgNameLine[i].contains("Montessori") && statusLine[i].contains("Closed Today")) {
                             txtFenton.setText("Fenton: CLOSED");
                             txtFenton.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtFenton.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Fenton = true;
                         } else {
@@ -667,6 +1014,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Flushing") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Robert") && statusLine[i].contains("Closed Today")) {
                             txtFlushing.setText("Flushing: CLOSED");
                             txtFlushing.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtFlushing.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Flushing = true;
                         } else {
@@ -677,6 +1028,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Genesee") && !orgNameLine[i].contains("Freedom") && !orgNameLine[i].contains("Christian") && !orgNameLine[i].contains("Mobile") && !orgNameLine[i].contains("Programs") && !orgNameLine[i].contains("Hlth") && !orgNameLine[i].contains("Sys") && !orgNameLine[i].contains("Stem") && !orgNameLine[i].contains("I.S.D.") && statusLine[i].contains("Closed Today")) {
                             txtGenesee.setText("Genesee: CLOSED");
                             txtGenesee.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtGenesee.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Genesee = true;
                         } else {
@@ -687,6 +1042,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Kearsley") && statusLine[i].contains("Closed Today")) {
                             txtKearsley.setText("Kearsley: CLOSED");
                             txtKearsley.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtKearsley.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Kearsley = true;
                         } else {
@@ -697,6 +1056,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Lake Fenton") && statusLine[i].contains("Closed Today")) {
                             txtLKFenton.setText("Lake Fenton: CLOSED");
                             txtLKFenton.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtLKFenton.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             LKFenton = true;
                         } else {
@@ -707,6 +1070,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Linden") && !orgNameLine[i].contains("Charter") && statusLine[i].contains("Closed Today")) {
                             txtLinden.setText("Linden: CLOSED");
                             txtLinden.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtLinden.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Linden = true;
                         } else {
@@ -717,6 +1084,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Montrose") && !orgNameLine[i].contains("Senior") && statusLine[i].contains("Closed Today")) {
                             txtMontrose.setText("Montrose: CLOSED");
                             txtMontrose.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtMontrose.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Montrose = true;
                         } else {
@@ -727,6 +1098,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Mt. Morris") && !orgNameLine[i].contains("Administration") && !orgNameLine[i].contains("Twp") && !orgNameLine[i].contains("Mary") && statusLine[i].contains("Closed Today")) {
                             txtMorris.setText("Mount Morris: CLOSED");
                             txtMorris.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtMorris.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Morris = true;
                         } else {
@@ -737,6 +1112,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Swartz Creek") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Montessori") && statusLine[i].contains("Closed Today")) {
                             txtSzCreek.setText("Swartz Creek: CLOSED");
                             txtSzCreek.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtSzCreek.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             SzCreek = true;
                         } else {
@@ -747,6 +1126,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Atherton") && statusLine[i].contains("Closed Today")) {
                             txtAtherton.setText("Atherton: CLOSED");
                             txtAtherton.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtAtherton.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier4++;
                             Atherton = true;
                         } else {
@@ -757,16 +1140,38 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Bendle") && statusLine[i].contains("Closed Today")) {
                             txtBendle.setText("Bendle: CLOSED");
                             txtBendle.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtBendle.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier4++;
                             Bendle = true;
                         } else {
                             txtBendle.setText("Bendle: OPEN");
                         }
                     }
+<<<<<<< HEAD
+=======
+                    if (!(Bentley)) {
+                        if (orgNameLine[i].contains("Bentley") && statusLine[i].contains("Closed Today")) {
+                            txtBentley.setText("Bentley: CLOSED");
+                            txtBentley.setBackgroundColor(Color.rgb(255, 165, 0));
+                            txtBentley.setTextColor(Color.WHITE);
+                            tier4++;
+                            Bentley = true;
+                        } else {
+                            txtBentley.setText("Bentley: OPEN");
+                        }
+                    }
+>>>>>>> master
                     if (!(Flint)) {
                         if (orgNameLine[i].contains("Flint Community Schools") && statusLine[i].contains("Closed Today")) {
                             txtFlint.setText("Flint: CLOSED");
                             txtFlint.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtFlint.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier4++;
                             Flint = true;
                         } else {
@@ -777,6 +1182,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Goodrich") && statusLine[i].contains("Closed Today")) {
                             txtGoodrich.setText("Goodrich: CLOSED");
                             txtGoodrich.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtGoodrich.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier4++;
                             Goodrich = true;
                         } else {
@@ -787,6 +1196,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Carman-Ainsworth") && !orgNameLine[i].contains("Senior") && statusLine[i].contains("Closed Today")) {
                             txtCarman.setText("Carman-Ainsworth: CLOSED");
                             txtCarman.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtCarman.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier5++;
                             Carman = true;
                         } else {
@@ -810,10 +1223,18 @@ public class SnowDayResult extends FragmentActivity {
                     if (!(GBAcademy)) {
                         if (orgNameLine[i].contains("Grand Blanc Academy") && statusLine[i].contains("Closed Tomorrow")) {
                             txtGBAcademy.setText("Grand Blanc Academy: CLOSED");
+<<<<<<< HEAD
                             //255, 215, 0
                             txtGBAcademy.setBackgroundColor(Color.rgb(255, 165, 0));
                             tier1++;
                             System.out.println("Closures Detected Correctly.");
+=======
+                            //lstClosings.
+                            txtGBAcademy.setBackgroundColor(Color.rgb(255, 165, 0));
+                            txtGBAcademy.setTextColor(Color.WHITE);
+                            System.out.println("Closures Detected Correctly");
+                            tier1++;
+>>>>>>> master
                             GBAcademy = true;
                         } else {
                             txtGBAcademy.setText("Grand Blanc Academy: OPEN");
@@ -823,7 +1244,11 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Genesee I.S.D.") && statusLine[i].contains("Closed Tomorrow")) {
                             txtGISD.setText("Genesee I.S.D.: CLOSED");
                             txtGISD.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
                             txtGISD.setBackgroundColor(Color.rgb(255, 165, 0));
+=======
+                            txtGISD.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier1++;
                             GISD = true;
                         } else {
@@ -834,6 +1259,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Holy Family") && statusLine[i].contains("Closed Tomorrow")) {
                             txtHolyFamily.setText("Holy Family: CLOSED");
                             txtHolyFamily.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtHolyFamily.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier1++;
                             HolyFamily = true;
                         } else {
@@ -844,6 +1273,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Woodland Park Academy") && statusLine[i].contains("Closed Tomorrow")) {
                             txtWPAcademy.setText("Woodland Park Academy: CLOSED");
                             txtWPAcademy.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtWPAcademy.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier1++;
                             WPAcademy = true;
                         } else {
@@ -854,6 +1287,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Durand") && !orgNameLine[i].contains("Senior") && statusLine[i].contains("Closed Tomorrow")) {
                             txtDurand.setText("Durand: CLOSED");
                             txtDurand.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtDurand.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Durand = true;
                         } else {
@@ -864,6 +1301,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Holly") && !orgNameLine[i].contains("Academy") && statusLine[i].contains("Closed Tomorrow")) {
                             txtHolly.setText("Holly: CLOSED");
                             txtHolly.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtHolly.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Holly = true;
                         } else {
@@ -874,6 +1315,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Lapeer") && !orgNameLine[i].contains("Chatfield") && !orgNameLine[i].contains("Transit") && !orgNameLine[i].contains("CMH") && !orgNameLine[i].contains("Tech") && !orgNameLine[i].contains("Offices") && !orgNameLine[i].contains("Library") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Paul") && statusLine[i].contains("Closed Tomorrow")) {
                             txtLapeer.setText("Lapeer: CLOSED");
                             txtLapeer.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtLapeer.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Lapeer = true;
                         } else {
@@ -884,6 +1329,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Owosso") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Baker") && !orgNameLine[i].contains("Paul") && statusLine[i].contains("Closed Tomorrow")) {
                             txtOwosso.setText("Owosso: CLOSED");
                             txtOwosso.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtOwosso.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Owosso = true;
                         } else {
@@ -894,6 +1343,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Beecher") && statusLine[i].contains("Closed Tomorrow")) {
                             txtBeecher.setText("Beecher: CLOSED");
                             txtBeecher.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtBeecher.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier2++;
                             Beecher = true;
                         } else {
@@ -904,6 +1357,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Clio") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("City") && !orgNameLine[i].contains("Cornerstone") && statusLine[i].contains("Closed Tomorrow")) {
                             txtClio.setText("Clio: CLOSED");
                             txtClio.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtClio.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Clio = true;
                         } else {
@@ -914,6 +1371,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Davison") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Faith") && !orgNameLine[i].contains("Montessori") && statusLine[i].contains("Closed Tomorrow")) {
                             txtDavison.setText("Davison: CLOSED");
                             txtDavison.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtDavison.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Davison = true;
                         } else {
@@ -924,6 +1385,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Fenton") && !orgNameLine[i].contains("Lake") && !orgNameLine[i].contains("City") && !orgNameLine[i].contains("Montessori") && statusLine[i].contains("Closed Tomorrow")) {
                             txtFenton.setText("Fenton: CLOSED");
                             txtFenton.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtFenton.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Fenton = true;
                         } else {
@@ -934,6 +1399,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Flushing") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Robert") && statusLine[i].contains("Closed Tomorrow")) {
                             txtFlushing.setText("Flushing: CLOSED");
                             txtFlushing.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtFlushing.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Flushing = true;
                         } else {
@@ -944,6 +1413,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Genesee") && !orgNameLine[i].contains("Freedom") && !orgNameLine[i].contains("Christian") && !orgNameLine[i].contains("Mobile") && !orgNameLine[i].contains("Programs") && !orgNameLine[i].contains("Hlth") && !orgNameLine[i].contains("Sys") && !orgNameLine[i].contains("Stem") && !orgNameLine[i].contains("I.S.D.") && statusLine[i].contains("Closed Tomorrow")) {
                             txtGenesee.setText("Genesee: CLOSED");
                             txtGenesee.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtGenesee.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Genesee = true;
                         } else {
@@ -954,6 +1427,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Kearsley") && statusLine[i].contains("Closed Tomorrow")) {
                             txtKearsley.setText("Kearsley: CLOSED");
                             txtKearsley.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtKearsley.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Kearsley = true;
                         } else {
@@ -964,6 +1441,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Lake Fenton") && statusLine[i].contains("Closed Tomorrow")) {
                             txtLKFenton.setText("Lake Fenton: CLOSED");
                             txtLKFenton.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtLKFenton.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             LKFenton = true;
                         } else {
@@ -974,6 +1455,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Linden") && !orgNameLine[i].contains("Charter") && statusLine[i].contains("Closed Tomorrow")) {
                             txtLinden.setText("Linden: CLOSED");
                             txtLinden.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtLinden.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Linden = true;
                         } else {
@@ -984,6 +1469,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Montrose") && !orgNameLine[i].contains("Senior") && statusLine[i].contains("Closed Tomorrow")) {
                             txtMontrose.setText("Montrose: CLOSED");
                             txtMontrose.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtMontrose.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Montrose = true;
                         } else {
@@ -994,6 +1483,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Mt. Morris") && !orgNameLine[i].contains("Administration") && !orgNameLine[i].contains("Twp") && !orgNameLine[i].contains("Mary") && statusLine[i].contains("Closed Tomorrow")) {
                             txtMorris.setText("Mount Morris: CLOSED");
                             txtMorris.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtMorris.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             Morris = true;
                         } else {
@@ -1004,6 +1497,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Swartz Creek") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Montessori") && statusLine[i].contains("Closed Tomorrow")) {
                             txtSzCreek.setText("Swartz Creek: CLOSED");
                             txtSzCreek.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtSzCreek.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier3++;
                             SzCreek = true;
                         } else {
@@ -1014,6 +1511,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Atherton") && statusLine[i].contains("Closed Tomorrow")) {
                             txtAtherton.setText("Atherton: CLOSED");
                             txtAtherton.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtAtherton.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier4++;
                             Atherton = true;
                         } else {
@@ -1024,16 +1525,38 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Bendle") && statusLine[i].contains("Closed Tomorrow")) {
                             txtBendle.setText("Bendle: CLOSED");
                             txtBendle.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtBendle.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier4++;
                             Bendle = true;
                         } else {
                             txtBendle.setText("Bendle: OPEN");
                         }
                     }
+<<<<<<< HEAD
+=======
+                    if (!(Bentley)) {
+                        if (orgNameLine[i].contains("Bentley") && statusLine[i].contains("Closed Tomorrow")) {
+                            txtBentley.setText("Bentley: CLOSED");
+                            txtBentley.setBackgroundColor(Color.rgb(255, 165, 0));
+                            txtBentley.setTextColor(Color.WHITE);
+                            tier4++;
+                            Bentley = true;
+                        } else {
+                            txtBentley.setText("Bentley: OPEN");
+                        }
+                    }
+>>>>>>> master
                     if (!(Flint)) {
                         if (orgNameLine[i].contains("Flint Community Schools") && statusLine[i].contains("Closed Tomorrow")) {
                             txtFlint.setText("Flint: CLOSED");
                             txtFlint.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtFlint.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier4++;
                             Flint = true;
                         } else {
@@ -1044,6 +1567,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Goodrich") && statusLine[i].contains("Closed Tomorrow")) {
                             txtGoodrich.setText("Goodrich: CLOSED");
                             txtGoodrich.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtGoodrich.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier4++;
                             Goodrich = true;
                         } else {
@@ -1054,6 +1581,10 @@ public class SnowDayResult extends FragmentActivity {
                         if (orgNameLine[i].contains("Carman-Ainsworth") && !orgNameLine[i].contains("Senior") && statusLine[i].contains("Closed Tomorrow")) {
                             txtCarman.setText("Carman-Ainsworth: CLOSED");
                             txtCarman.setBackgroundColor(Color.rgb(255, 165, 0));
+<<<<<<< HEAD
+=======
+                            txtCarman.setTextColor(Color.WHITE);
+>>>>>>> master
                             tier5++;
                             Carman = true;
                         } else {
@@ -1061,14 +1592,26 @@ public class SnowDayResult extends FragmentActivity {
                         }
                     }
                 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
             }
         });
     }
 
+<<<<<<< HEAD
     private void checkGBClosed() {
                 System.out.println("Checking if GB is closed.");
                 for (int i = 1; i < orgNameLine.length; i++) {
                     System.out.println("We're in the loop.");
+=======
+
+    private void checkGBClosed() {
+        int gbnum = 0; //For debugging purposes only
+                System.out.println("Checking if GB is closed.");
+                for (int i = 1; i < orgNameLine.length; i++) {
+>>>>>>> master
                     if (!GB) {
                         System.out.println("GB is false.");
                         if (orgNameLine[i].contains("Grand Blanc") && !orgNameLine[i].contains("Academy") && !orgNameLine[i].contains("Freedom") && !orgNameLine[i].contains("Offices") && !orgNameLine[i].contains("City") && !orgNameLine[i].contains("Senior") && !orgNameLine[i].contains("Holy") && statusLine[i].contains("Closed Today") && dayrun == 0) {
@@ -1098,6 +1641,7 @@ public class SnowDayResult extends FragmentActivity {
                             System.out.println("GB Found (tomorrow)!");
                             break;
                         } else {
+<<<<<<< HEAD
                             System.out.println("Didn't find GB yet");
                             runOnUiThread(new Runnable() {
                                 public void run() {
@@ -1106,6 +1650,17 @@ public class SnowDayResult extends FragmentActivity {
                                 }
                             });
                             GB = false;
+=======
+                            System.out.println("Didn't find GB yet (" + (gbnum + 1) + ")");
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    txtGB.setText("Grand Blanc: OPEN");
+                                    txtGB.setBackgroundColor(Color.rgb(55, 60, 65));
+                                }
+                            });
+                            GB = false;
+                            gbnum++;
+>>>>>>> master
                         }
 
                     }
@@ -1121,6 +1676,7 @@ public class SnowDayResult extends FragmentActivity {
             //Change the percentage based on current storm/wind/temperature warnings.
             Document weatherdoc = null;
             //Live html
+<<<<<<< HEAD
 //            try {
 //                weatherdoc = Jsoup.connect("http://forecast.weather.gov/afm/PointClick.php?lat=42.92580&lon=-83.61870").get();
 //            } catch (IOException ex) {
@@ -1130,6 +1686,15 @@ public class SnowDayResult extends FragmentActivity {
 
             //Document with multiple preset conditions
             System.out.println("Accessing Weather.htm from SD card.");
+=======
+            try {
+                weatherdoc = Jsoup.connect("http://forecast.weather.gov/afm/PointClick.php?lat=42.92580&lon=-83.61870").get();
+            } catch (IOException ex) {
+                txtInfo.setText(txtInfo.getText() + "\nCould not retrieve weather information. \nAre you connected to the internet?");
+            }
+            //Document with multiple preset conditions
+            /*System.out.println("Accessing Weather.htm from SD card.");
+>>>>>>> master
             File weatherinput = new File("mnt/sdcard/Weather.htm");
             try {
                 weatherdoc = Jsoup.parse(weatherinput, "UTF-8", "");
@@ -1137,6 +1702,7 @@ public class SnowDayResult extends FragmentActivity {
             } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("Couldn't read the file.");
+<<<<<<< HEAD
             }
 
             //Document with no warnings
@@ -1146,6 +1712,23 @@ public class SnowDayResult extends FragmentActivity {
             //NullPointerException test
             //File weatherinput = new File("mnt/sdcard/Blank.htm");
             //Document weatherdoc = Jsoup.parse(input2, "UTF-8", "");
+=======
+            }*/
+
+            //Document with no warnings
+           /* File weatherinput = new File("mnt/sdcard/WeatherTest.htm");
+            try {
+                weatherdoc = Jsoup.parse(weatherinput, "UTF-8", "");
+                System.out.println("Successfully parsed file.");
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Couldn't read the file.");
+            }*/
+
+            /*NullPointerException test
+            File weatherinput = new File("mnt/sdcard/Blank.htm");
+            Document weatherdoc = Jsoup.parse(input2, "UTF-8", "");*/
+>>>>>>> master
 
             //String weatherWarn = null;
             System.out.println("Searching for elements in class 'warn'");
@@ -1362,6 +1945,7 @@ public class SnowDayResult extends FragmentActivity {
             if (tier5 == 1) {
                 System.out.println("Carman-Ainsworth was closed. We'll close. 90% schoolpercent");
                 schoolpercent += 90;
+<<<<<<< HEAD
             } else if (tier4 != 0) {
                 System.out.println("Schools near GB were closed. 80% schoolpercent");
                 schoolpercent += 80;
@@ -1373,6 +1957,19 @@ public class SnowDayResult extends FragmentActivity {
                 schoolpercent += 40;
             } else if (tier1 != 0) {
                 System.out.println("Academies were closed. 20% schoolpercent");
+=======
+            } else if (tier4 > 2) {
+                System.out.println("3+ schools near GB were closed. 80% schoolpercent");
+                schoolpercent += 80;
+            } else if (tier3 > 2) {
+                System.out.println("3+ schools in Genesee County were closed. 60% schoolpercent");
+                schoolpercent += 60;
+            } else if (tier2 > 2) {
+                System.out.println("3+ schools in nearby counties were closed. 40% schoolpercent");
+                schoolpercent += 40;
+            } else if (tier1  > 2) {
+                System.out.println("3+ academies were closed. 20% schoolpercent");
+>>>>>>> master
                 schoolpercent += 20;
             }
 
@@ -1420,6 +2017,10 @@ public class SnowDayResult extends FragmentActivity {
                       txtPercent.setText("0%");
                       txtPercent.setVisibility(View.VISIBLE);
                       txtInfo.setVisibility(View.VISIBLE);
+<<<<<<< HEAD
+=======
+                      progCalculate.setVisibility(View.GONE);
+>>>>>>> master
                   }
             });
 
@@ -1482,6 +2083,7 @@ public class SnowDayResult extends FragmentActivity {
     
     private void showViews() {
         txtGBAcademy.setVisibility(View.VISIBLE);
+<<<<<<< HEAD
         txtGISD.setVisibility(View.VISIBLE);
         txtHolyFamily.setVisibility(View.VISIBLE);
         txtWPAcademy.setVisibility(View.VISIBLE);
@@ -1506,6 +2108,59 @@ public class SnowDayResult extends FragmentActivity {
         txtLapeer.setVisibility(View.VISIBLE);
         txtOwosso.setVisibility(View.VISIBLE);
         txtCarman.setVisibility(View.VISIBLE);
+=======
+        
+        txtGISD.setVisibility(View.VISIBLE);
+        
+        txtHolyFamily.setVisibility(View.VISIBLE);
+        
+        txtWPAcademy.setVisibility(View.VISIBLE);
+       
+        txtBeecher.setVisibility(View.VISIBLE);
+       
+        txtClio.setVisibility(View.VISIBLE);
+       
+        txtDavison.setVisibility(View.VISIBLE);
+        
+        txtFenton.setVisibility(View.VISIBLE);
+        
+        txtFlushing.setVisibility(View.VISIBLE);
+        
+        txtGenesee.setVisibility(View.VISIBLE);
+        
+        txtKearsley.setVisibility(View.VISIBLE);
+        
+        txtLKFenton.setVisibility(View.VISIBLE);
+        
+        txtLinden.setVisibility(View.VISIBLE);
+        
+        txtMontrose.setVisibility(View.VISIBLE);
+       
+        txtMorris.setVisibility(View.VISIBLE);
+        
+        txtSzCreek.setVisibility(View.VISIBLE);
+        
+        txtAtherton.setVisibility(View.VISIBLE);
+       
+        txtBendle.setVisibility(View.VISIBLE);
+
+        txtBentley.setVisibility(View.VISIBLE);
+        
+        txtFlint.setVisibility(View.VISIBLE);
+        
+        txtGoodrich.setVisibility(View.VISIBLE);
+        
+        txtDurand.setVisibility(View.VISIBLE);
+       
+        txtHolly.setVisibility(View.VISIBLE);
+       
+        txtLapeer.setVisibility(View.VISIBLE);
+        
+        txtOwosso.setVisibility(View.VISIBLE);
+        
+        txtCarman.setVisibility(View.VISIBLE);
+
+>>>>>>> master
         txtGB.setVisibility(View.VISIBLE);
 
         txtTier1.setVisibility(View.VISIBLE);
@@ -1517,3 +2172,9 @@ public class SnowDayResult extends FragmentActivity {
         btnRadar.setVisibility(View.VISIBLE);
     }
 }
+
+
+
+
+
+

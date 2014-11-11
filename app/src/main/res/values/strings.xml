@@ -133,5 +133,10 @@
         <item>@string/HolyFamily</item>
         <item>@string/WPAcademy</item>
     </string-array>
+<<<<<<< HEAD
+=======
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+>>>>>>> master
 
 </resources>

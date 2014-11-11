@@ -3,6 +3,7 @@ package com.GBSnowDay.SnowDay;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,7 +24,8 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class SnowDayResult extends Activity {
+public class SnowDayResult extends Activity implements Closings.OnFragmentInteractionListener, Percent.OnFragmentInteractionListener, Weather.OnFragmentInteractionListener{
+
     //Declare all views
     TextView txtGB;
     TextView txtCarman;
@@ -52,7 +54,7 @@ public class SnowDayResult extends Activity {
     TextView txtGISD;
     TextView txtHolyFamily;
     TextView txtWPAcademy;
-    
+
     TextView txtTier1;
     TextView txtTier2;
     TextView txtTier3;
@@ -125,11 +127,20 @@ public class SnowDayResult extends Activity {
     public boolean WJRTActive;
     public boolean NWSActive;
 
+
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             System.out.println("Hello from activity_snow_day_result!");
             System.out.println("Setting up views");
             super.onCreate(savedInstanceState);
+
+            Percent percentfragment = new Percent();
+            Closings closingsfragment = new Closings();
+            Weather weatherfragment = new Weather();
             setContentView(R.layout.activity_snow_day_result);
 
             //Create TabHost
@@ -151,40 +162,20 @@ public class SnowDayResult extends Activity {
             specs.setIndicator("Weather");
             tabHost.addTab(specs);
 
-            //Declare views
-            //picWJRT = (ImageView) findViewById(R.id.picWJRT);
-            txtGB = (TextView) findViewById(R.id.txtGB);
-            txtCarman = (TextView) findViewById(R.id.txtCarman);
-            txtAtherton = (TextView) findViewById(R.id.txtAtherton);
-            txtBendle = (TextView) findViewById(R.id.txtBendle);
-            txtBentley = (TextView) findViewById(R.id.txtBentley);
-            txtFlint = (TextView) findViewById(R.id.txtFlint);
-            txtGoodrich = (TextView) findViewById(R.id.txtGoodrich);
-            txtBeecher = (TextView) findViewById(R.id.txtBeecher);
-            txtClio = (TextView) findViewById(R.id.txtClio);
-            txtDavison = (TextView) findViewById(R.id.txtDavison);
-            txtFenton = (TextView) findViewById(R.id.txtFenton);
-            txtFlushing = (TextView) findViewById(R.id.txtFlushing);
-            txtGenesee = (TextView) findViewById(R.id.txtGenesee);
-            txtKearsley = (TextView) findViewById(R.id.txtKearsley);
-            txtLKFenton = (TextView) findViewById(R.id.txtLKFenton);
-            txtLinden = (TextView) findViewById(R.id.txtLinden);
-            txtMontrose = (TextView) findViewById(R.id.txtMontrose);
-            txtMorris = (TextView) findViewById(R.id.txtMorris);
-            txtSzCreek = (TextView) findViewById(R.id.txtSzCreek);
-            txtDurand = (TextView) findViewById(R.id.txtDurand);
-            txtHolly = (TextView) findViewById(R.id.txtHolly);
-            txtLapeer = (TextView) findViewById(R.id.txtLapeer);
-            txtOwosso = (TextView) findViewById(R.id.txtOwosso);
-            txtGBAcademy = (TextView) findViewById(R.id.txtGBAcademy);
-            txtGISD = (TextView) findViewById(R.id.txtGISD);
-            txtHolyFamily = (TextView) findViewById(R.id.txtHolyFamily);
-            txtWPAcademy = (TextView) findViewById(R.id.txtWPAcademy);
-        
-            txtTier1 = (TextView) findViewById(R.id.txtTier1);
-            txtTier2 = (TextView) findViewById(R.id.txtTier2);
-            txtTier3 = (TextView) findViewById(R.id.txtTier3);
-            txtTier4 = (TextView) findViewById(R.id.txtTier4);
+            tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+                @Override
+                public void onTabChanged(String s) {
+                    if (tabHost.getCurrentTab() == 0) {
+                        System.out.println("One");
+                    }else if (tabHost.getCurrentTab() == 1) {
+                        System.out.println("Two");
+                    }else if (tabHost.getCurrentTab() == 2) {
+                        System.out.println("Three");
+                    }
+                }
+            });
+
+
 
             txtPercent = (TextView) findViewById(R.id.txtPercent);
             txtWeather = (TextView) findViewById(R.id.txtWeather);
@@ -193,8 +184,8 @@ public class SnowDayResult extends Activity {
             btnRadar = (Button) findViewById(R.id.btnRadar);
             progCalculate = (ProgressBar) findViewById(R.id.progCalculate);
         
-
             Calculate();
+
         }
 
     @Override
@@ -216,22 +207,7 @@ public class SnowDayResult extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void radarToggle(View view) {
-        if (webRadar.getVisibility() == View.GONE) {
-            webRadar.setEnabled(true);
-            webRadar.setVisibility(View.VISIBLE);
-            webRadar.loadUrl("http://radar.weather.gov/Conus/Loop/centgrtlakes_loop.gif");
-            webRadar.getSettings().setLoadWithOverviewMode(true);
-            webRadar.getSettings().setUseWideViewPort(true);
-            btnRadar.setText(R.string.radarhide);
-            txtWeather.setVisibility(View.GONE);
-        } else {
-            webRadar.setVisibility(View.GONE);
-            webRadar.setEnabled(false);
-            btnRadar.setText(R.string.radarshow);
-            txtWeather.setVisibility(View.VISIBLE);
-        }
-    }
+
 
     private void Calculate() {
         System.out.println("Continuing calculation");
@@ -257,19 +233,19 @@ public class SnowDayResult extends Activity {
          */
 
         //Call a reset to clear any previous data
-        Reset();
+        //Reset();
 
 
         /**WJRT SCHOOL CLOSINGS SCRAPER**/
-        new WJRTScraper().execute();
+        //new WJRTScraper().execute();
 
         //Next Test: Weather!
 
         /**NATIONAL WEATHER SERVICE SCRAPER**/
-        new WeatherScraper().execute();
+        //new WeatherScraper().execute();
 
         //Final Percent Calculator
-        new PercentCalculate().execute();
+        //new PercentCalculate().execute();
 
 
 
@@ -281,8 +257,8 @@ public class SnowDayResult extends Activity {
         WJRTActive = false;
         NWSActive = false;
 
-        txtInfo.setVisibility(View.GONE);
-        progCalculate.setVisibility(View.VISIBLE);
+        //txtInfo.setVisibility(View.GONE);
+        //progCalculate.setVisibility(View.VISIBLE);
 
         //Reset variables
         schoolpercent = 0;
@@ -434,7 +410,7 @@ public class SnowDayResult extends Activity {
         txtGB.setTextColor(Color.WHITE);
         txtGB.setBackgroundColor(Color.rgb(55, 60, 65));
         txtGB.setVisibility(View.GONE);
-        
+
         txtTier1.setVisibility(View.GONE);
         txtTier2.setVisibility(View.GONE);
         txtTier3.setVisibility(View.GONE);
